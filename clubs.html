@@ -1,73 +1,99 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uk">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Гуртки та секції — Ліцей № 328 Оболонського району м. Києва</title>
-<meta name="description" content="Гуртки та секції — Ліцей № 328 Оболонського району м. Києва. Офіційна інформація, документи, новини та корисні матеріали." />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Гуртки — Ліцей №328 Оболонського району м. Києва</title>
+  <meta name="description" content="Позакласна діяльність, Юний репортер, настільний теніс.">
+  <meta name="theme-color" content="#0b3a78">
+  <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
 </head>
-<body data-page="clubs.html">
-<div class="topline"><div class="container topline-inner"><span>Офіційний сайт</span><span>м. Київ • 2025/2026 н.р.</span><span id="userBadge">Гість</span></div></div>
+<body class="">
+<a class="skip-link" href="#main">Перейти до змісту</a>
+<div class="topbar"><div class="container"><span>Офіційна інформація · проспект Володимира Івасюка, 47, м. Київ, 04213</span><span><a href="mailto:328_obolon@i.ua">328_obolon@i.ua</a> · 411-03-03 · ЄДРПОУ 22878068</span></div></div>
+<div class="notice-bar"><div class="container"><span>Швидкий доступ: документи, НМТ, безпека, психологічна підтримка</span><button class="btn" data-open-search>Пошук Ctrl+K</button></div></div>
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="index.html">
-      <div class="brand-mark">328</div>
-      <div class="brand-text">
-        <strong>Ліцей № 328</strong>
-        <span>Оболонського району м. Києва</span>
-      </div>
+    <a class="brand" href="index.html" aria-label="На головну">
+      <div class="logo">328</div>
+      <div><div class="brand-title">Ліцей №328</div><div class="brand-subtitle">Оболонський район м. Києва</div></div>
     </a>
-    <nav class="main-nav"><button class="burger" aria-label="Меню"><span></span><span></span><span></span></button><ul class="nav-list"><li><a class="" href="index.html">Головна</a></li><li class="has-sub"><button class="sub-trigger ">Про ліцей</button><ul class="sub-menu"><li><a class="" href="about.html">Загальні відомості</a></li><li><a class="" href="teachers.html">Педагогічний склад</a></li><li><a class="" href="governance.html">Структура управління</a></li><li><a class="" href="structure-year.html">Структура навчального року</a></li><li><a class="" href="achievements.html">Досягнення та розвиток</a></li></ul></li><li class="has-sub"><button class="sub-trigger ">Освітня діяльність</button><ul class="sub-menu"><li><a class="" href="education.html">Освітній процес</a></li><li><a class="" href="education-programs.html">Освітні програми</a></li><li><a class="" href="assessment.html">Критерії оцінювання</a></li><li><a class="" href="nmt.html">НМТ 2026</a></li><li><a class="" href="distance.html">Дистанційне навчання</a></li><li><a class="" href="career.html">Профорієнтація</a></li></ul></li><li class="has-sub"><button class="sub-trigger ">Учасникам освітнього процесу</button><ul class="sub-menu"><li><a class="" href="parents.html">Батькам</a></li><li><a class="" href="students.html">Учням</a></li><li><a class="" href="psychological.html">Психологічна служба</a></li><li><a class="" href="faq.html">Питання та відповіді</a></li><li><a class="" href="reviews.html">Відгуки про ліцей</a></li></ul></li><li class="has-sub"><button class="sub-trigger ">Безпечне середовище</button><ul class="sub-menu"><li><a class="" href="safety.html">Безпека та здоровʼя</a></li><li><a class="" href="civil-protection.html">Цивільний захист</a></li><li><a class="" href="antibullying.html">Протидія булінгу</a></li></ul></li><li class="has-sub"><button class="sub-trigger active">Позаурочне життя</button><ul class="sub-menu"><li><a class="" href="news.html">Новини</a></li><li><a class="" href="library.html">Бібліотека</a></li><li><a class="" href="newspaper.html">Шкільна газета</a></li><li><a class="active" href="clubs.html">Гуртки та секції</a></li><li><a class="" href="gallery.html">Галерея</a></li><li><a class="" href="calendar.html">Календар подій</a></li></ul></li><li><a class="" href="documents.html">Документи</a></li><li><a class="" href="admissions.html">Вступ</a></li><li><a class="" href="contacts.html">Контакти</a></li></ul></nav>
+    <nav id="mainNav" class="nav" aria-label="Головна навігація"><div class="nav-item"><a class="nav-link " href="index.html">Головна</a></div><div class="nav-item"><button class="nav-button " aria-expanded="false">Про ліцей ▾</button><div class="submenu"><a href="about.html">Загальні відомості</a><a href="history.html">Історія та статус</a><a href="governance.html">Структура управління</a><a href="teachers.html">Педагогічний склад</a><a href="administration.html">Адміністрація</a><a href="map.html">Карта сайту</a></div></div><div class="nav-item"><button class="nav-button " aria-expanded="false">Освітня діяльність ▾</button><div class="submenu"><a href="programs.html">Освітні програми</a><a href="structure.html">Структура року</a><a href="assessment.html">Оцінювання</a><a href="distance.html">Дистанційне навчання</a><a href="methodical-work.html">Методична робота</a><a href="innovation.html">Інновації</a></div></div><div class="nav-item"><button class="nav-button " aria-expanded="false">Учням ▾</button><div class="submenu"><a href="nmt.html">НМТ-2026</a><a href="admissions.html">Вступ до ліцею</a><a href="career.html">Профорієнтація</a><a href="clubs.html">Гуртки</a><a href="newspaper.html">Шкільна газета</a></div></div><div class="nav-item"><button class="nav-button " aria-expanded="false">Батькам ▾</button><div class="submenu"><a href="psychological.html">Психологічна підтримка</a><a href="safety.html">Безпека</a><a href="antibullying.html">Протидія булінгу</a><a href="inclusion.html">Інклюзія</a><a href="health.html">Харчування і здоров’я</a></div></div><div class="nav-item"><button class="nav-button " aria-expanded="false">Документи ▾</button><div class="submenu"><a href="documents.html">Офіційні документи</a><a href="transparency.html">Прозорість</a><a href="finance.html">Фінансова звітність</a><a href="procurements.html">Закупівлі</a></div></div><div class="nav-item"><button class="nav-button " aria-expanded="false">Життя ліцею ▾</button><div class="submenu"><a href="news.html">Новини</a><a href="events.html">Події</a><a href="calendar.html">Календар</a><a href="gallery.html">Галерея</a><a href="library.html">Бібліотека</a><a href="reviews.html">Відгуки</a></div></div><div class="nav-item"><a class="nav-link " href="contacts.html">Контакти</a></div></nav>
+    <div class="header-actions">
+      <button class="icon-btn" data-open-search title="Пошук">⌕</button>
+      <a class="btn" href="auth.html"><span data-user-name>Гість</span></a>
+      <button class="icon-btn mobile-toggle" data-mobile-toggle aria-label="Меню">☰</button>
+    </div>
   </div>
 </header>
+<div id="searchPanel" class="search-panel" role="dialog" aria-label="Пошук по сайту">
+  <div class="search-box">
+    <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px">
+      <h2 style="margin:0">Пошук по сайту</h2>
+      <button class="icon-btn" data-close-search>✕</button>
+    </div>
+    <input id="globalSearchInput" placeholder="Введіть назву документа, сторінки або новини">
+    <div id="globalSearchResults" class="search-results"></div>
+  </div>
+</div>
+<main id="main">
 
-        <section class="hero hero-page hero-small" style="--hero-image:url('assets/img/hero-school.jpg')">
-          <div class="overlay"></div>
-          <div class="hero-content container">
-            <div class="breadcrumbs"><a href="index.html">Головна</a><span>•</span><span>Гуртки та секції</span></div>
-            <p class="kicker">Позаурочне життя</p>
-            <h1>Гуртки та секції</h1>
-            <p>Позаурочна активність, творчі та спортивні напрямки.</p>
-          </div>
-        </section>
-        
-<main>
-<section class="section "><div class="container"><div class="section-head"><h2>Гуртки та секції</h2></div><div class="longtext"><p>Позаурочна діяльність доповнює навчальний процес і дає простір для самореалізації. Гуртки допомагають учням відкривати себе, розвивати інтереси та формувати навички співпраці.</p></div><div class="grid-4"><div class="card"><h3>Юний репортер</h3><p>Шкільний гурток для тих, хто любить тексти, інтерв’ю, фото та живу історію подій.</p></div><div class="card"><h3>Настільний теніс</h3><p>Секція для розвитку витривалості, координації та спортивного характеру.</p></div><div class="card"><h3>Творчі ініціативи</h3><p>Проєкти, виставки, тематичні події та участь у шкільних акціях.</p></div><div class="card"><h3>Предметні тижні</h3><p>Інтелектуальні активності, тематичні дні та практичні форми участі.</p></div></div></div></section>
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumbs"><a href="index.html">Головна</a><span>›</span><span>Гуртки</span></div>
+    <h1 class="page-title">Гуртки</h1>
+    <p class="lead" style="color:#dcecff">Позакласна діяльність, Юний репортер, настільний теніс.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container page-layout">
+    <aside class="side-nav"><a class="" href="about.html">Про ліцей</a><a class="" href="teachers.html">Педагогічний склад</a><a class="" href="education.html">Освітня діяльність</a><a class="" href="documents.html">Документи</a><a class="" href="nmt.html">НМТ-2026</a><a class="" href="parents.html">Батькам</a><a class="" href="safety.html">Безпека</a><a class="" href="psychological.html">Психолог</a><a class="" href="news.html">Новини</a><a class="" href="gallery.html">Галерея</a><a class="" href="contacts.html">Контакти</a></aside>
+    <article class="article">
+      
+<h2>Гуртки та позакласна діяльність</h2>
+<p>Позакласна діяльність дає дитині право на іншу роль: не лише учня за партою, а автора, спортсмена, репортера, організатора, командного гравця.</p>
+<div class="grid grid-2">
+<div class="card"><img src="assets/img/young-reporter.jpg" alt=""><h3>Юний репортер</h3><p>Шкільна журналістика, інтерв’ю, тексти, фото, медіаграмотність і відповідальність за слово.</p></div>
+<div class="card"><img src="assets/img/tennis.jpg" alt=""><h3>Настільний теніс</h3><p>Реакція, концентрація, рух, дисципліна і радість здорової конкуренції.</p></div>
+</div>
+
+      
+      <section class="comments-box" data-comments-for="clubs.html"></section>
+    </article>
+  </div>
+</section>
 </main>
-<footer class="site-footer">
+<div class="floating-tools" aria-label="Інструменти доступності">
+  <button data-font-plus title="Збільшити текст">A+</button>
+  <button data-font-minus title="Зменшити текст">A−</button>
+  <button data-contrast title="Контраст">◐</button>
+  <button data-reader title="Режим читання">R</button>
+  <button data-print title="Друк">⎙</button>
+  <button data-top title="Вгору">↑</button>
+</div>
+<div id="toast" class="toast"></div>
+<div id="lightbox" class="lightbox"><img id="lightboxImg" alt=""></div>
+
+<footer class="footer">
   <div class="container footer-grid">
     <div>
-      <h4>Ліцей № 328 Оболонського району м. Києва</h4>
-      <p>Сучасний інформаційний простір для учнів, батьків, педагогів і всіх, кому важлива якісна та доступна освіта.</p>
+      <div class="brand" style="margin-bottom:14px">
+        <div class="logo">328</div>
+        <div><div class="brand-title">Ліцей №328 Оболонського району м. Києва</div><div class="brand-subtitle">проспект Володимира Івасюка, 47, м. Київ, 04213</div></div>
+      </div>
+      <p>Сайт побудований навколо прозорості, безпеки, зручної навігації та швидкого доступу до документів.</p>
+      <small>© 2026 Ліцей №328 Оболонського району м. Києва. Усі права захищено.</small>
     </div>
-    <div>
-      <h4>Швидкі розділи</h4>
-      <ul class="footer-links">
-        <li><a href="about.html">Про ліцей</a></li>
-        <li><a href="documents.html">Документи</a></li>
-        <li><a href="nmt.html">НМТ 2026</a></li>
-        <li><a href="teachers.html">Педагогічний склад</a></li>
-        <li><a href="reviews.html">Відгуки</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Контакти</h4>
-      <ul class="footer-links small">
-        <li>04213, м. Київ, проспект Володимира Івасюка, 47</li>
-        <li><a href="contacts.html">Сторінка контактів</a></li>
-        <li><a href="account.html">Особистий кабінет</a></li>
-        <li><a href="sitemap.html">Карта сайту</a></li>
-      </ul>
-    </div>
+    <div><h3>Основне</h3><a href="about.html">Про ліцей</a><br><a href="education.html">Освітня діяльність</a><br><a href="documents.html">Документи</a><br><a href="news.html">Новини</a></div>
+    <div><h3>Підтримка</h3><a href="psychological.html">Психолог</a><br><a href="antibullying.html">Протидія булінгу</a><br><a href="safety.html">Безпека</a><br><a href="reviews.html">Відгуки</a></div>
+    <div><h3>Контакти</h3><a href="mailto:328_obolon@i.ua">328_obolon@i.ua</a><br><a href="contacts.html">411-03-03</a><br><a href="map.html">Карта сайту</a><br><a href="auth.html">Особистий кабінет</a></div>
   </div>
-  <div class="footer-bottom"><div class="container"><span>© 2026 Ліцей № 328 Оболонського району м. Києва</span><button id="toTop" class="to-top">Нагору ↑</button></div></div>
 </footer>
-<script>window.__seedReviews = [{"name": "Олена, мама учениці 8 класу", "rating": 5, "text": "Подобається відкритість адміністрації, спокійна атмосфера та увага до безпеки дітей. На сайті легко знайти потрібні документи."}, {"name": "Андрій, випускник", "rating": 5, "text": "Сильні вчителі, хороша підготовка до підсумкових іспитів, багато можливостей для самостійного зростання."}, {"name": "Марія, учениця 10 класу", "rating": 4, "text": "Подобається, що у школі є різні форми навчання, а новий сайт виглядає набагато зрозуміліше та сучасніше."}];</script>
-<script src="assets/app.js"></script>
 
 </body>
 </html>

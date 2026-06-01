@@ -1,0 +1,15 @@
+{
+  "name": "Ліцей №328 Оболонського району м. Києва",
+  "short_name": "Ліцей №328",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#f4f7fb",
+  "theme_color": "#0b3a78",
+  "icons": [
+    {
+      "src": "assets/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
