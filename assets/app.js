@@ -1,30 +1,28 @@
 
-const menuBtn = document.querySelector('.menu-btn');
-const mainNav = document.querySelector('.main-nav');
-menuBtn?.addEventListener('click', () => {
-  const open = mainNav.classList.toggle('open');
-  menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-});
-mainNav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mainNav.classList.remove('open')));
-
-const searchInput = document.querySelector('#docSearch');
-const rows = Array.from(document.querySelectorAll('.doc-row'));
-const buttons = Array.from(document.querySelectorAll('.filter-btn'));
-let currentFilter = 'all';
-function applyDocs(){
-  const q = (searchInput?.value || '').toLowerCase().trim();
-  rows.forEach(row => {
-    const text = (row.dataset.doc || row.textContent).toLowerCase();
-    const cat = row.dataset.category || '';
-    const okText = !q || text.includes(q);
-    const okCat = currentFilter === 'all' || cat === currentFilter;
-    row.style.display = okText && okCat ? '' : 'none';
-  });
+const $ = (s,p=document)=>p.querySelector(s);
+const $$ = (s,p=document)=>Array.from(p.querySelectorAll(s));
+const storage = {
+  get(k,fallback){ try{ return JSON.parse(localStorage.getItem(k)) ?? fallback }catch(e){ return fallback } },
+  set(k,v){ localStorage.setItem(k, JSON.stringify(v)); }
+};
+function updateUserBadge(){ const u = storage.get('znz-user', null); const badge = $('#userBadge'); if(badge) badge.textContent = u ? `Користувач: ${u.name}` : 'Гість'; }
+function initMenu(){ const burger = $('.burger'); const nav = $('.nav-list'); if(burger && nav){ burger.addEventListener('click', ()=> nav.classList.toggle('open')); } $$('.has-sub').forEach(item=>{ const btn = $('.sub-trigger', item); if(btn){ btn.addEventListener('click', ()=> item.classList.toggle('open')); } }); }
+function initToTop(){ const btn = $('#toTop'); if(btn) btn.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'})); }
+function initFilters(){ const input = document.querySelector('[data-doc-search]'); const select = document.querySelector('[data-doc-filter]'); const items = $$('[data-doc-item]'); const run = ()=>{ const q = (input?.value || '').toLowerCase().trim(); const cat = (select?.value || '').toLowerCase().trim(); let visible=0; items.forEach(el=>{ const t = (el.dataset.title||'').toLowerCase(); const c = (el.dataset.category||'').toLowerCase(); const ok = (!q || t.includes(q)) && (!cat || c===cat); el.style.display = ok ? '' : 'none'; if(ok) visible++; }); const empty=$('#docsEmpty'); if(empty) empty.style.display = visible? 'none':'block'; }; if(input) input.addEventListener('input', run); if(select) select.addEventListener('change', run); run();
+  const newsInput = document.querySelector('[data-news-search]'); const newsItems = $$('[data-news-item]'); if(newsInput){ const go=()=>{const q=(newsInput.value||'').toLowerCase(); newsItems.forEach(n=>n.style.display=((n.dataset.title||'').toLowerCase().includes(q)||(n.dataset.tag||'').toLowerCase().includes(q))?'':'none');}; newsInput.addEventListener('input',go); go(); }
+  const teacherInput = document.querySelector('[data-teacher-search]'); const teacherItems = $$('[data-teacher-item]'); if(teacherInput){ const go=()=>{const q=(teacherInput.value||'').toLowerCase(); teacherItems.forEach(n=>n.style.display=((n.dataset.name||'').toLowerCase().includes(q)||(n.dataset.role||'').toLowerCase().includes(q))?'':'none');}; teacherInput.addEventListener('input',go); go(); }
 }
-searchInput?.addEventListener('input', applyDocs);
-buttons.forEach(btn => btn.addEventListener('click', () => {
-  buttons.forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  currentFilter = btn.dataset.filter || 'all';
-  applyDocs();
-}));
+function initFaq(){ $$('.faq-item').forEach(item=>{ const b = $('.faq-q', item); b?.addEventListener('click', ()=> item.classList.toggle('open')); }); }
+function commentsKey(){ return 'znz-comments-' + (document.body.dataset.page || 'page'); }
+function renderComments(){ const wrap = $('#commentsList'); if(!wrap) return; const arr = storage.get(commentsKey(), []); wrap.innerHTML = arr.length ? arr.map(c=>`<div class="comment"><strong>${c.name}</strong><div class="meta">${c.date}</div><div>${c.text}</div></div>`).join('') : '<div class="empty">Поки що коментарів немає. Ви можете залишити перший.</div>'; }
+function initComments(){ const form = $('#commentForm'); if(!form) return; renderComments(); form.addEventListener('submit', e=>{ e.preventDefault(); const user = storage.get('znz-user', null); const name = user?.name || form.name.value.trim(); const text = form.text.value.trim(); const status = $('#commentStatus'); if(!name || !text){ status.innerHTML='<div class="error">Заповніть ім’я та текст коментаря.</div>'; return; } const arr = storage.get(commentsKey(), []); arr.unshift({name, text, date:new Date().toLocaleString('uk-UA')}); storage.set(commentsKey(), arr); form.reset(); status.innerHTML='<div class="success">Коментар збережено у цьому браузері.</div>'; renderComments(); updateUserBadge(); }); }
+function renderReviews(){ const list = $('#reviewList'); if(!list) return; let arr = storage.get('znz-reviews', null); if(!arr){ arr = window.__seedReviews || []; storage.set('znz-reviews', arr); } list.innerHTML = arr.map(r=>`<div class="review"><div class="stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div><strong>${r.name}</strong><p>${r.text}</p></div>`).join(''); }
+function initReviews(){ const form = $('#reviewForm'); if(!form) return; renderReviews(); form.addEventListener('submit', e=>{ e.preventDefault(); const user = storage.get('znz-user', null); const name = user?.name || form.name.value.trim(); const rating = parseInt(form.rating.value||'5'); const text = form.text.value.trim(); const status = $('#reviewStatus'); if(!name || !text){ status.innerHTML='<div class="error">Заповніть ім’я та текст відгуку.</div>'; return; } const arr = storage.get('znz-reviews', window.__seedReviews || []); arr.unshift({name, rating, text}); storage.set('znz-reviews', arr); form.reset(); status.innerHTML='<div class="success">Відгук додано у локальну базу браузера.</div>'; renderReviews(); }); }
+function initAccount(){ const tabs = $$('.tab-btn'); tabs.forEach(btn=>btn.addEventListener('click', ()=>{ tabs.forEach(b=>b.classList.remove('active')); btn.classList.add('active'); $$('.tab-pane').forEach(p=>p.classList.remove('active')); $('#' + btn.dataset.tab)?.classList.add('active'); }));
+  const reg = $('#registerForm'); if(reg){ reg.addEventListener('submit', e=>{ e.preventDefault(); const data = Object.fromEntries(new FormData(reg).entries()); const status = $('#registerStatus'); if(!data.name || !data.email || !data.password){ status.innerHTML='<div class="error">Заповніть усі обов’язкові поля.</div>'; return; } const users = storage.get('znz-users', []); if(users.find(u=>u.email===data.email)){ status.innerHTML='<div class="error">Користувач із такою електронною адресою вже існує.</div>'; return; } users.push(data); storage.set('znz-users', users); storage.set('znz-user', {name:data.name,email:data.email}); status.innerHTML='<div class="success">Реєстрація успішна. Ви авторизовані у цьому браузері.</div>'; updateUserBadge(); }); }
+  const log = $('#loginForm'); if(log){ log.addEventListener('submit', e=>{ e.preventDefault(); const data = Object.fromEntries(new FormData(log).entries()); const status = $('#loginStatus'); const users = storage.get('znz-users', []); const user = users.find(u=>u.email===data.email && u.password===data.password); if(!user){ status.innerHTML='<div class="error">Невірна адреса електронної пошти або пароль.</div>'; return; } storage.set('znz-user', {name:user.name,email:user.email}); status.innerHTML='<div class="success">Вхід виконано.</div>'; updateUserBadge(); }); }
+  const out = $('#logoutBtn'); if(out){ out.addEventListener('click', ()=>{ localStorage.removeItem('znz-user'); updateUserBadge(); const st = $('#logoutStatus'); if(st) st.innerHTML='<div class="success">Ви вийшли з облікового запису.</div>'; }); }
+}
+function initGallery(){ const modal = document.createElement('div'); modal.id='lightbox'; modal.style.cssText='position:fixed;inset:0;background:rgba(8,20,40,.84);display:none;align-items:center;justify-content:center;padding:24px;z-index:1000'; modal.innerHTML='<img style="max-width:min(1100px,96vw);max-height:90vh;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.4)"><button style="position:absolute;top:24px;right:24px;padding:12px 14px;border-radius:12px;border:none;background:#fff;cursor:pointer">Закрити</button>'; document.body.appendChild(modal); const img = $('img', modal); $('button', modal).onclick=()=>modal.style.display='none'; modal.onclick=e=>{ if(e.target===modal) modal.style.display='none';}; $$('.gallery a').forEach(a=>a.addEventListener('click',e=>{ e.preventDefault(); img.src=a.href; modal.style.display='flex';})); }
+function init(){ updateUserBadge(); initMenu(); initToTop(); initFilters(); initFaq(); initComments(); initReviews(); initAccount(); initGallery(); }
+document.addEventListener('DOMContentLoaded', init);
